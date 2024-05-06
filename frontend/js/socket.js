@@ -1,4 +1,4 @@
-const socket = io("ws://34.207.252.111:3000");
+// const socket = io("ws://34.207.252.111:3000");
 // const socket = io("ws://localhost:3000");
 const token = {
     1: "cross",
