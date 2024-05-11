@@ -111,6 +111,7 @@ resource "aws_instance" "ttc" {
   associate_public_ip_address = "true"
   vpc_security_group_ids      = [aws_security_group.ttc.id]
   user_data_replace_on_change = true
+  # user_data = file("user_data.sh")
   tags = {
     Name = "TicTacToe"
   }
