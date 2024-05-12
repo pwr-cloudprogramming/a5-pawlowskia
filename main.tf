@@ -1,9 +1,8 @@
-# AWS PROVIDER
 provider "aws" {
   region = "us-east-1"
 }
 
-# SET UP VPC
+# vpc creation
 resource "aws_vpc" "my_vpc" {
 	cidr_block = "10.0.0.0/16"
   enable_dns_support = true
@@ -14,7 +13,7 @@ resource "aws_vpc" "my_vpc" {
 	}
 }
 
-# CREATE SUBNETS
+# vpc subnets
 resource "aws_subnet" "public_subnet" {
   vpc_id     = aws_vpc.my_vpc.id
   cidr_block = "10.0.101.0/24"
@@ -34,7 +33,7 @@ resource "aws_subnet" "private_subnet" {
   }
 }
 
-# CREATE INTERNET GATEWAY
+# internet gateway
 resource "aws_internet_gateway" "igw" {
   vpc_id = aws_vpc.my_vpc.id
 
@@ -43,7 +42,7 @@ resource "aws_internet_gateway" "igw" {
   }
 }
 
-# CREATE ROUTE TABLES
+# route table
 resource "aws_route_table" "public_route_table" {
   vpc_id = aws_vpc.my_vpc.id
 
@@ -57,13 +56,13 @@ resource "aws_route_table" "public_route_table" {
   }
 }
 
-# ASSOCIATE ROUTE TABLE WITH PUBLIC SUBNET
+# route table assotiation with public subnet
 resource "aws_route_table_association" "public" {
   subnet_id = aws_subnet.public_subnet.id
   route_table_id = aws_route_table.public_route_table.id
 }
 
-# CONFIGURE SECURITY GROUPS
+# security groups
 resource "aws_security_group" "ttc" {
   name        = "ttc_security"
   description = "allow ssh, http traffic"
@@ -102,7 +101,7 @@ resource "aws_security_group" "ttc" {
   }
 }
 
-# DEPLOY EC2 INSTANCES
+# ec2 instances
 resource "aws_instance" "ttc" {
   ami                         = "ami-080e1f13689e07408"
   instance_type               = "t2.micro"
@@ -125,7 +124,7 @@ resource "aws_instance" "ttc" {
       "cd a5-pawlowskia",
       "chmod 755 ipfinder.sh",
       "./ipfinder.sh",
-      "sudo docker compose up --build",
+      "sudo docker compose up -d --build",
     ]
 
     connection {
