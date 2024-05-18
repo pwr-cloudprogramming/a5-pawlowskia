@@ -35,11 +35,12 @@ Aplikacja "Gra w kółko i krzyżyk" została uruchomiona na instancji EC2 i dzi
 - Projekt umożliwił mi/zapoznał mnie z konfiguracją infrastruktury AWS za pomocą narzędzia Terraform.
 - Poznałem/am sposób tworzenia i zarządzania siecią VPC, instancjami EC2 oraz grupami zabezpieczeń.
 2. What obstacles did you overcome?
-- Podczas konfiguracji infrastruktury napotkałem/am pewne trudności związane z ustawieniem reguł grupy zabezpieczeń.
-- Nadal nierozwiązanym problemem jest uzywanie `user_data` do automatycznego uruchamiania aplikacji po utworzeniu instancji EC2. Niestety nie udało mi się tego uruchomić. Uzyłem więc zamiast tego `remote-exec`.
-3. What did you help most in overcoming obstacles?
+- Największym problemem było uzywanie `user_data` do automatycznego uruchamiania aplikacji po utworzeniu instancji EC2. Uzyłem więc zamiast tego `remote-exec`, lecz po konsultacjach z Panem Thomasem udało mi się rozwiązać problem, chodziło o rónicę pomiędzy pakietami `docker-compose` a `docker-compose-v2`, oraz ich wywołaniami: `docker-compose` vs `docker compose`
+- Łączenie się z instancją EC2 za pomocą klucza SSH również sprawiło mi trudności. Błąd jaki występował to "Permission denied (publickey)". Googlowanie problemu nie pomagało, bo ten error message jest bardzo ogólny. Okazało się ze podawałem ściekę do klucza `labuser.pem` zamiast `labsuser.pem`, co zauwaył Pan Thomas na konsultacjach.
+1. What did you help most in overcoming obstacles?
 - W trakcie realizacji projektu skorzystałem/am z dokumentacji AWS oraz Terraform, a także z forów internetowych, gdzie znalazłem/am odpowiedzi na napotkane problemy.
-4. Was that something that surprised you?
+- Konsultacje z prowadzącym
+1. Was that something that surprised you?
 - Byłem/am zaskoczony/a elastycznością i skalowalnością chmurze AWS oraz prostotą zarządzania infrastrukturą przy użyciu Terraform.
 
 Projekt pozwolił mi/zapoznał mnie z praktycznymi aspektami konfiguracji infrastruktury w chmurze obliczeniowej. Pozyskane doświadczenie będzie przydatne w dalszym rozwoju moich umiejętności w dziedzinie chmury obliczeniowej i DevOps.
